@@ -19,6 +19,7 @@ const keys = Object.keys(filters)
 
 Page({
     data: {
+        selected:0
     },
     onLoad: function (options) {
     },
@@ -105,6 +106,9 @@ Page({
                 } = res
 
                 originalData = data
+                z.setData({
+                    selected:1
+                })
             }
         })
     }

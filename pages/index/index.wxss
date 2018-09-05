@@ -1,1 +1,4 @@
 /* pages/index/index.wxss */
+.wrap {
+    height: 200rpx;
+}

@@ -1,4 +1,6 @@
 <!--pages/index/index.wxml-->
-<button bindtap='choose'>choose image</button>
-<button bindtap='filterTap'>filter</button>
-<canvas canvas-id='hehe' style='width:300px; height:300px; border:1px solid black;'></canvas>
+<view class='wrap'>
+    <button bindtap='choose'>choose image</button>
+    <button wx:if="{{selected}}" bindtap='filterTap'>filter</button>
+</view>
+<canvas canvas-id='hehe' style='margin:0 auto;width:300px; height:300px; border:1px solid black;'></canvas>
