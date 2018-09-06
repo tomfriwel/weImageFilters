@@ -1,9 +1,5 @@
 var ImageFilters = {};
 
-// wechat miniapp helper
-ImageFilters.helper = {
-
-}
 
 // Filter
 ImageFilters.utils = {

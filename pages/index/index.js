@@ -1,20 +1,16 @@
 // pages/index/index.js
 const ImageFilters = require('../../utils/weImageFilters/weImageFilters.js')
+const Helper = require('../../utils/weImageFilters/weImageFiltersHelper.js')
 
-const canvasId = 'hehe'
-const canvasW = 300
-const canvasH = 300
-
-let originalData = null
+let helper = new Helper({
+    canvasId: 'hehe',
+    width: 300,
+    height: 300
+})
 
 const filters = {
     original: function(data) {
         return data
-    },
-    GaussianBlur: function(data) {
-        // GaussianBlur (srcImageData, strength)
-        // strength 1 <= n <= 4
-        return ImageFilters.GaussianBlur(data, 4)
     },
     Binarize: function(data) {
         // Binarize (srcImageData, threshold)
@@ -25,6 +21,11 @@ const filters = {
         // BoxBlur (srcImageData, hRadius, vRadius, quality)
 
         return ImageFilters.BoxBlur(data, 3, 3, 2)
+    },
+    GaussianBlur: function(data) {
+        // GaussianBlur (srcImageData, strength)
+        // strength 1 <= n <= 4
+        return ImageFilters.GaussianBlur(data, 4)
     },
     StackBlur: function(data) {
         // StackBlur (srcImageData, radius)
@@ -185,92 +186,53 @@ Page({
         this.setData({
             index
         })
+
+        let imageData = helper.createImageData()
+        let filtered = filters[keys[index]](imageData)
+
         wx.showLoading({
             title: '正在加载...',
         })
         let startTime = (new Date()).getTime()
-        let imageData = ImageFilters.utils.createImageDataFromData(originalData, canvasW, canvasH)
+        helper.putImageData(filtered, ()=>{
+            wx.hideLoading()
 
-        let filtered = filters[keys[index]](imageData)
-
-        wx.canvasPutImageData({
-            canvasId: canvasId,
-            data: filtered.data,
-            x: 0,
-            y: 0,
-            width: canvasW,
-            height: canvasH,
-            complete: res => {
-                console.log(res)
-                wx.hideLoading()
-                let endTime = (new Date()).getTime()
-                let gap = (endTime - startTime)
-                console.log(gap + 'ms')
-                z.setData({
-                    gap
-                })
-            }
+            let endTime = (new Date()).getTime()
+            let gap = (endTime - startTime)
+            
+            z.setData({
+                gap
+            })
         })
     },
     choose() {
         const z = this
-        const ctx = wx.createCanvasContext(canvasId)
         wx.chooseImage({
             count: 1,
             success: function(res) {
                 if (res.tempFilePaths.length) {
                     let path = res.tempFilePaths[0]
 
-                    ctx.drawImage(path, 0, 0, canvasW, canvasH)
-                    ctx.draw(false, () => {
-                        console.log('draw done')
-                        z.getCavasImageData()
+                    helper.initCanvas(path, ()=>{
+                        z.setData({
+                            selected: 1
+                        })
                     })
                 }
             },
         })
     },
-    getCavasImageData() {
-        const z = this
-        wx.canvasGetImageData({
-            canvasId: canvasId,
-            x: 0,
-            y: 0,
-            width: canvasW,
-            height: canvasH,
-            success: res => {
-                console.log(res)
-                let {
-                    data
-                } = res
-
-                originalData = data
-                z.setData({
-                    selected: 1
-                })
-            }
-        })
-    },
     save() {
-        wx.canvasToTempFilePath({
-            x: 0,
-            y: 0,
-            width: canvasW,
-            height: canvasH,
-            destWidth: canvasW,
-            destHeight: canvasH,
-            canvasId: canvasId,
-            success: function(res) {
-                console.log(res.tempFilePath)
-                wx.saveImageToPhotosAlbum({
-                    filePath: res.tempFilePath,
-                    success: res => {
-                        wx.showToast({
-                            title: '保存成功',
-                        })
-                    }
-                })
-            }
+        helper.getImageTempFilePath(tempFilePath=>{
+            // 保存到相册
+            wx.saveImageToPhotosAlbum({
+                filePath: tempFilePath,
+                success: res => {
+                    wx.showToast({
+                        title: '保存成功',
+                    })
+                }
+            })
         })
     }
 })
