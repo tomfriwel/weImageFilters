@@ -1,2 +1,3 @@
 <!--pages/ripple/ripple.wxml-->
-<text>pages/ripple/ripple.wxml</text>
+<canvas canvas-id='hehe' bindtouchmove='moveHandler' style='margin:0 auto;width:300px; height:300px; border:1px solid #ddd;'></canvas>
+<button bindtap='choose'>choose image</button>
