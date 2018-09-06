@@ -1,4 +1,37 @@
 /* pages/index/index.wxss */
 .wrap {
-    height: 200rpx;
+    height: 300rpx;
+}
+
+.picker-wrap {
+    width: 750rpx;
+    height: 88rpx;
+}
+
+.picker-wrap picker {
+    width: 100%;
+    height: 88rpx;
+    border-bottom: 2rpx solid #ddd;
+    display: flex;
+    align-items: center;
+    padding-left: 30rpx;
+    font-size: 30rpx;
+    background: #eee;
+}
+
+.picker {
+    width: 750rpx;
+    text-align: center;
+}
+
+.time {
+    width: 750rpx;
+    height: 88rpx;
+    line-height: 88rpx;
+    text-align: center;
+    font-size: 30rpx;
+}
+
+.save {
+    margin-top: 30rpx;
 }

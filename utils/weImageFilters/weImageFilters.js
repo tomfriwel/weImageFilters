@@ -1,4 +1,11 @@
 var ImageFilters = {};
+
+// wechat miniapp helper
+ImageFilters.helper = {
+
+}
+
+// Filter
 ImageFilters.utils = {
     initSampleCanvas: function() {
         // wx.createCanvasContext(canvasid, this)
@@ -269,7 +276,6 @@ ImageFilters.utils = {
         return rgb;
     }
 };
-
 
 // TODO
 ImageFilters.Translate = function(srcImageData, x, y, interpolation) {
@@ -1934,8 +1940,8 @@ ImageFilters.Transpose = function(srcImageData) {
 
     var srcIndex, dstIndex;
 
-    for (y = 0; y < srcHeight; y += 1) {
-        for (x = 0; x < srcWidth; x += 1) {
+    for (var y = 0; y < srcHeight; y += 1) {
+        for (var x = 0; x < srcWidth; x += 1) {
             srcIndex = (y * srcWidth + x) << 2;
             dstIndex = (x * srcHeight + y) << 2;
 
