@@ -173,7 +173,7 @@ Page({
         selected: 0,
         array: [],
         index: 0,
-        gap: 0
+        gap: 0,
     },
     onLoad: function(options) {
         this.setData({
@@ -213,6 +213,8 @@ Page({
                 if (res.tempFilePaths.length) {
                     let path = res.tempFilePaths[0]
 
+                    // z.getImageAspectFitSize(path)
+
                     helper.initCanvas(path, ()=>{
                         z.setData({
                             selected: 1
@@ -222,6 +224,19 @@ Page({
             },
         })
     },
+    // getImageAspectFitSize(path, maxW, maxH, cb) {
+    //     wx.getImageInfo({
+    //         src: path,
+    //         success:res=>{
+    //             console.log(res)
+    //             let {width, height} = res
+
+    //             if(cb) {
+    //                 cb()
+    //             }
+    //         }
+    //     })
+    // },
     save() {
         helper.getImageTempFilePath(tempFilePath=>{
             // 保存到相册

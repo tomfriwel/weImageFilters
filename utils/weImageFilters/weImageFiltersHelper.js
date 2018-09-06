@@ -49,6 +49,22 @@ Helper.prototype.initCanvas = function(tempFilePath, cb) {
     })
 }
 
+// 更新canvas信息
+Helper.prototype.updateCanvasInfo = function (options) {
+    if (options.canvasId) {
+        this.canvasInfo.canvasId = options.canvasId
+    }
+    if (options.width) {
+        this.canvasInfo.width = options.width
+    }
+    if (options.height) {
+        this.canvasInfo.height = options.height
+    }
+    if (options.tempFilePath) {
+        this.initCanvas(options.tempFilePath)
+    }
+}
+
 // 从originalImageData创建 imageData
 Helper.prototype.createImageData = function() {
     const z = this
