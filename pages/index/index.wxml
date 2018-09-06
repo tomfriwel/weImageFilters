@@ -11,6 +11,6 @@
     </view>
     <view class='time' wx:if="{{gap}}">Processing time:{{gap}}ms</view>
 </view>
-<canvas canvas-id='hehe' style='margin:0 auto;width:300px; height:300px; border:1px solid #ddd;'></canvas>
+<canvas canvas-id='hehe' style='margin:0 auto;width:320px; height:320px; border:1px solid #ddd;'></canvas>
 
 <button wx:if="{{selected}}" bindtap='save' class='save'>save</button>
