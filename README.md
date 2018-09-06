@@ -24,6 +24,10 @@
 
 #### 效果图
 
+屏幕截图
+
+![屏幕截图](https://upload-images.jianshu.io/upload_images/2158535-205a7f10a1f41bda.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/375)
+
 原图
 
 ![原图](https://upload-images.jianshu.io/upload_images/2158535-d3e9a4579dc42882.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
