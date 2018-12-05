@@ -396,7 +396,8 @@ ImageFilters.Binarize = function(srcImageData, threshold) {
     threshold *= 255;
 
     for (var i = 0; i < srcLength; i += 4) {
-        var avg = srcPixels[i] + srcPixels[i + 1] + srcPixels[i + 2] / 3;
+        // var avg = srcPixels[i] + srcPixels[i + 1] + srcPixels[i + 2] / 3;
+        var avg = (srcPixels[i] + srcPixels[i + 1] + srcPixels[i + 2]) / 3;
 
         dstPixels[i] = dstPixels[i + 1] = dstPixels[i + 2] = avg <= threshold ? 0 : 255;
         dstPixels[i + 3] = 255;

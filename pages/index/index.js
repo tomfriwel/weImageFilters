@@ -15,7 +15,7 @@ const filters = {
     Binarize: function (data) {
         // Binarize (srcImageData, threshold)
         // threshold 0.0 <= n <= 1.0
-        return ImageFilters.Binarize(data, 0.9)
+        return ImageFilters.Binarize(data, 0.5)
     },
     BoxBlur: function (data) {
         // BoxBlur (srcImageData, hRadius, vRadius, quality)
